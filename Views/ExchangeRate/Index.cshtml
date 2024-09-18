@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Exchange Rates";
+    var exchangeRates = ViewBag.ExchangeRates as Dictionary<string, decimal>;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (exchangeRates != null && exchangeRates.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Exchange Rate (to NPR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rate in exchangeRates)
+            {
+                <tr>
+                    <td>@rate.Key</td>
+                    <td>@rate.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No exchange rates available.</p>
+}
